@@ -3,7 +3,7 @@ name: 编译内核a14-6-1
 permissions:
   contents: write  # Allow writing to repository contents (for pushing tags)
   actions: write   # Allows triggering actions
-  
+
 on:
   workflow_dispatch:
     inputs:
@@ -45,9 +45,8 @@ on:
         required: true
         type: boolean
         default: true
-    
-jobs:
 
+jobs:
   build-kernel-a14-6-1:
     uses: ./.github/workflows/kernel-a14-6.1.yml
     secrets: inherit
@@ -58,10 +57,10 @@ jobs:
       version: ${{ inputs.version }}
       use_zram: ${{ inputs.use_zram }}
       use_kpm: ${{ inputs.use_kpm }}
+
   get-ksu-manager:
     if: ${{ inputs.get_manager }}
     uses: ./.github/workflows/get-manager.yml
     secrets: inherit
     with:
       kernelsu_variant: ${{ inputs.kernelsu_variant }}
-
